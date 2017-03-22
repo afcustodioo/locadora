@@ -1,7 +1,18 @@
-<div [formGroup]="form">
-  <label>ID</label>
-  <input type="text" name="id" id="id" formControlName="id">
+<form [formGroup]="form" (ngSubmit)="save(form.value)">
+  <label for="id">ID</label>
+  <input type="text" id="id" formControlName="id">
 
-  <label>Placa</label>
-  <input type="text" name="placa" id="placa" formControlName="placa">
-</div>
+  <label for="ano">Ano</label>
+  <input type="number" id="ano" formControlName="ano">
+
+  <label for="modelo">Modelo</label>
+  <input type="text" id="modelo" formControlName="modelo">
+
+  <label for="placa">Placa</label>
+  <input type="text" id="placa" formControlName="placa">
+
+  <label for="cor">Cor</label>
+  <input type="text" id="cor" formControlName="cor">
+
+  <button id="save" [disabled]="!form.valid">Salvar</button>
+</form>

@@ -1,11 +1,11 @@
 package br.com.locadora.repository;
 
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import br.com.locadora.model.Veiculo;
 
-@RequestMapping("/api/veiculos")
-public interface VeiculoRepository extends CrudRepository<Veiculo, Long> {
+@CrossOrigin
+public interface VeiculoRepository extends PagingAndSortingRepository<Veiculo, Long> {
 
 }
