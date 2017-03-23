@@ -40,7 +40,6 @@ export class VeiculoComponent implements OnInit {
       data.json()._embedded.veiculoes.forEach(veiculo => {
         this.veiculos.push(this.convertToVeiculo(veiculo));
       });
-
     });
   }
 
