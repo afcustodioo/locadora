@@ -18,13 +18,18 @@
 
   <table>
     <thead>
-      <th>id</th>
-      <th>ano</th>
-      <th>modelo</th>
-      <th>placa</th>
-      <th>cor</th>
+      <th>Ano</th>
+      <th>Modelo</th>
+      <th>Placa</th>
+      <th>Cor</th>
     </thead>
     <tbody>
+      <tr *ngFor="let v of veiculos">
+        <td>{{v.ano}}</td>
+        <td>{{v.modelo}}</td>
+        <td>{{v.placa}}</td>
+        <td>{{v.cor}}</td>
+      </tr>
     </tbody>
   </table>
 </form>

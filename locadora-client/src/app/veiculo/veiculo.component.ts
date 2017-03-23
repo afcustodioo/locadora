@@ -14,6 +14,8 @@ export class VeiculoComponent implements OnInit {
 
   veiculos: Veiculo[] = [];
 
+  ENDPOINT: string = 'http://localhost:8080/veiculos/';
+
   constructor(public formBuilder: FormBuilder, private http: Http) {
   }
 
@@ -28,32 +30,29 @@ export class VeiculoComponent implements OnInit {
       delete body['id'];
     }
 
-    this.http.post('http://localhost:8080/veiculos/', body).subscribe(salvo => {
-      console.log(salvo);
+    this.http.post(this.ENDPOINT, body).subscribe(salvo => {
+      this.veiculos.push(this.convertToVeiculo(salvo.json()))
     })
   }
 
   loadTable(): void {
-    this.http.get('http://localhost:8080/veiculos/').subscribe((data: any) => {
-
+    this.http.get(this.ENDPOINT).subscribe((data: any) => {
       data.json()._embedded.veiculoes.forEach(veiculo => {
-        this.veiculos.push(this.toVeiculo(veiculo));
+        this.veiculos.push(this.convertToVeiculo(veiculo));
       });
 
     });
   }
 
-  private toVeiculo(obj:any): Veiculo {
-    let v: Veiculo = <Veiculo> ({
-      ano: obj.ano,
-      modelo: obj.modelo,
-      placa: obj.placa,
-      cor: obj.cor
+  private convertToVeiculo(veiculoObj: any): Veiculo {
+
+    return <Veiculo> ({
+      ano: veiculoObj.ano,
+      modelo: veiculoObj.modelo,
+      placa: veiculoObj.placa,
+      cor: veiculoObj.cor
     });
 
-    console.log('convertido', v);
-
-    return v;
   }
 
   private createForm(): FormGroup {
